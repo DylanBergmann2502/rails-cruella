@@ -1,3 +1,4 @@
+# config/cable.yml
 development:
   adapter: async
 
