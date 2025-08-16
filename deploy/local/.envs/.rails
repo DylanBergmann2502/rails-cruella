@@ -1,0 +1,23 @@
+# deploy/local/.envs/.rails
+# Rails Local Development Configuration
+
+RAILS_ENV=development
+
+# Database Configuration (PostgreSQL)
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=rails_cruella_development
+POSTGRES_USER=fqrpqffwdjqsjhGgYdCShzeWJwGxDCyu
+POSTGRES_PASSWORD=AuLjZ5WZzj4F5V7FAv6aRmkvuc3W8jhSq1ek7RWOfvWIgWtJ8tHVALmo9tVibJzJ
+
+# Rails Application Settings
+RAILS_MASTER_KEY=7f7238f9fff557e23a0a7b6b12220727
+SECRET_KEY_BASE=336d105e50e87ec8f4ec0850c44d1ba2c2a5a21161ab862f5d677b80ffc70dd242529149259f850300657d9f40ad9f685a1e983be4589311a237914e54d6650e
+RAILS_MAX_THREADS=5
+
+# Application Host
+RAILS_HOST=0.0.0.0
+
+# Logging
+RAILS_LOG_TO_STDOUT=true
+RAILS_LOG_LEVEL=debug

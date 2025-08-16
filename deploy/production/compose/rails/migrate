@@ -1,0 +1,9 @@
+#!/bin/bash
+# deploy/production/compose/rails/migrate
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Run database migrations
+rails db:migrate

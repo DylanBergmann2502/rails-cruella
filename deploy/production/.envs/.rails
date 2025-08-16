@@ -1,0 +1,23 @@
+# deploy/production/.envs/.rails
+# Rails Production Configuration
+
+RAILS_ENV=production
+
+# Database Configuration (PostgreSQL)
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=rails_cruella_production
+POSTGRES_USER=fqrpqffwdjqsjhGgYdCShzeWJwGxDCyu
+POSTGRES_PASSWORD=bp8RBCtN99P62As7u4zgCdu7xc7bd9uCdT88KKWWmcTiDo0e9pd31JM6f51ntJrG
+
+# Rails Application Settings
+RAILS_MASTER_KEY=7f7238f9fff557e23a0a7b6b12220727
+SECRET_KEY_BASE=065e337faa9c32cbf427a209d02d5066c69bea408f4691f97976b56712853b4edfc8bd51bca2a57b9ca7cb095edbd6ed840de86c1eb922025a6c3c1b6055c8f8
+RAILS_MAX_THREADS=5
+
+# Application Host
+RAILS_HOST=0.0.0.0
+
+# Logging
+RAILS_LOG_TO_STDOUT=true
+RAILS_LOG_LEVEL=info

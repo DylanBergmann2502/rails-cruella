@@ -7,3 +7,25 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 config/credentials/*.yml.enc diff=rails_credentials
 config/credentials.yml.enc diff=rails_credentials
+
+# Ensure consistent line endings across all platforms
+* text=auto
+
+# Scripts should always use LF line endings
+*.sh text eol=lf
+entrypoint text eol=lf
+start text eol=lf
+migrate text eol=lf
+
+# Configuration files
+*.yml text eol=lf
+*.yaml text eol=lf
+*.rb text eol=lf
+*.rake text eol=lf
+Gemfile text eol=lf
+Gemfile.lock text eol=lf
+Rakefile text eol=lf
+
+# Docker files
+Dockerfile text eol=lf
+.dockerignore text eol=lf

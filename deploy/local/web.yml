@@ -1,0 +1,35 @@
+# deploy/local/web.yml
+name: rails_cruella_local
+
+volumes:
+  postgres_data: {}
+  postgres_data_backups: {}
+
+services:
+  postgres:
+    build:
+      context: ../..
+      dockerfile: ./deploy/production/compose/postgres/Dockerfile
+    image: postgres
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.postgres
+
+  rails:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/rails/Dockerfile
+    image: rails
+    container_name: rails
+    depends_on:
+      - postgres
+    volumes:
+      - ../..:/app:z
+    env_file:
+      - ./.envs/.rails
+    ports:
+      - "8000:8000"
+    command: /start
