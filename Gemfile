@@ -51,4 +51,19 @@ group :development, :test do
 
   # Ruby code formatter and linter [https://github.com/testdouble/standard]
   gem "standard", require: false
+
+  # RSpec testing framework [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails", "~> 8.0"
+
+  # Factory Bot for test data creation [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails", "~> 6.5"
+
+  # Faker for generating fake data [https://github.com/faker-ruby/faker]
+  gem "faker", "~> 3.5"
+
+  # Shoulda Matchers for RSpec [https://github.com/thoughtbot/shoulda-matchers]
+  gem "shoulda-matchers", "~> 6.5"
+
+  # WebMock for stubbing HTTP requests [https://github.com/bblimke/webmock]
+  gem "webmock", "~> 3.25"
 end
