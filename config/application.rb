@@ -44,5 +44,16 @@ module RailsCruella
 
     # Configure Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
+
+    # Configure CORS
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          credentials: false
+      end
+    end
   end
 end
