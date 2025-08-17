@@ -54,10 +54,14 @@ RUN bundle install
 COPY ./deploy/local/compose/rails/entrypoint /entrypoint
 COPY ./deploy/local/compose/rails/start /start
 COPY ./deploy/local/compose/rails/migrate /migrate
+COPY ./deploy/local/compose/rails/sidekiq/worker/start /start-sidekiq-worker
+COPY ./deploy/local/compose/rails/sidekiq/web/start /start-sidekiq-web
 RUN sed -i 's/\r$//g' /entrypoint \
     && sed -i 's/\r$//g' /start \
     && sed -i 's/\r$//g' /migrate \
-    && chmod +x /entrypoint /start /migrate
+    && sed -i 's/\r$//g' /start-sidekiq-worker \
+    && sed -i 's/\r$//g' /start-sidekiq-web \
+    && chmod +x /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web
 
 # Copy application code
 COPY . .

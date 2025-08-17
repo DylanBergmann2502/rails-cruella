@@ -1,0 +1,9 @@
+#!/bin/bash
+# deploy/production/compose/rails/sidekiq/web/start
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Run Sidekiq Web UI using rackup with custom config
+exec bundle exec rackup sidekiq_web_config.ru -p 4567 -o 0.0.0.0 -E production

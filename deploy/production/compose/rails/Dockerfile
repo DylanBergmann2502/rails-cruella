@@ -49,8 +49,10 @@ RUN chmod +x bin/* && \
 COPY ./deploy/production/compose/rails/entrypoint /entrypoint
 COPY ./deploy/production/compose/rails/start /start
 COPY ./deploy/production/compose/rails/migrate /migrate
-RUN sed -i 's/\r$//g' /entrypoint /start /migrate && \
-    chmod +x /entrypoint /start /migrate
+COPY ./deploy/production/compose/rails/sidekiq/worker/start /start-sidekiq-worker
+COPY ./deploy/production/compose/rails/sidekiq/web/start /start-sidekiq-web
+RUN sed -i 's/\r$//g' /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web && \
+    chmod +x /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web
 
 # Final stage for app image
 FROM base

@@ -10,7 +10,13 @@ gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
+
+# Use Sidekiq for background job processing [https://github.com/sidekiq/sidekiq]
+gem "sidekiq", "~> 7.0"
+
+# Use Sidekiq-cron for scheduled jobs [https://github.com/ondrejbartas/sidekiq-cron]
+gem "sidekiq-cron", "~> 1.9"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

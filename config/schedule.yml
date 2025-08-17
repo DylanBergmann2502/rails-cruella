@@ -1,0 +1,8 @@
+# config/schedule.yml
+# Configuration for Sidekiq-cron scheduled jobs
+# Format: https://github.com/ondrejbartas/sidekiq-cron
+
+example_job:
+  class: ExampleJob
+  cron: "0 */6 * * *"  # Every 6 hours
+  args: "Scheduled job execution"

@@ -4,6 +4,7 @@ name: rails_cruella_local
 volumes:
   postgres_data: {}
   postgres_data_backups: {}
+  redis_data: {}
 
 services:
   postgres:
@@ -26,6 +27,7 @@ services:
     container_name: rails
     depends_on:
       - postgres
+      - redis
     volumes:
       - ../..:/app:z
     env_file:
@@ -33,3 +35,41 @@ services:
     ports:
       - "8000:8000"
     command: /start
+
+  redis:
+    image: docker.io/redis:8
+    container_name: redis
+    volumes:
+      - redis_data:/data
+
+  sidekiq_worker:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/rails/Dockerfile
+    image: sidekiq_worker
+    container_name: sidekiq_worker
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ../..:/app:z
+    env_file:
+      - ./.envs/.rails
+    command: /start-sidekiq-worker
+
+  sidekiq_web:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/rails/Dockerfile
+    image: sidekiq_web
+    container_name: sidekiq_web
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ../..:/app:z
+    env_file:
+      - ./.envs/.rails
+    ports:
+      - "4567:4567"
+    command: /start-sidekiq-web
