@@ -1,0 +1,37 @@
+# config/brakeman.yml
+# Brakeman security scanner configuration
+
+# Application path (default is current directory)
+app_path: .
+
+# Rails version
+rails_version: 8.0.2
+
+# Paths to exclude from scanning
+skip_files:
+  - vendor/
+  - tmp/
+  - log/
+  - storage/
+  - node_modules/
+
+# Checks to skip (none by default)
+skip_checks: []
+
+# Output format options: json, html, csv, tabs, text
+output_format: text
+
+# Minimum confidence level (1-3, where 1 is highest confidence)
+min_confidence: 2
+
+# Suppress warnings for specific files/lines
+# ignore_file: config/brakeman.ignore
+
+# Check all files, even if they haven't changed
+force_scan: false
+
+# Exit with error code if warnings found
+exit_on_warn: true
+
+# Print additional information during scan
+verbose: false

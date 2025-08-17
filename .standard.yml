@@ -1,0 +1,21 @@
+# .standard.yml
+# Standard Ruby linter and formatter configuration
+
+# Ruby version to target
+ruby_version: 3.4
+
+# Paths to ignore during linting
+ignore:
+  - 'vendor/**/*'
+  - 'tmp/**/*'
+  - 'log/**/*'
+  - 'storage/**/*'
+  - 'db/schema.rb'
+  - 'node_modules/**/*'
+  - 'bin/**/*'
+
+# Include hidden files in linting
+include_hidden: false
+
+# Fix issues automatically when possible
+fix: false
