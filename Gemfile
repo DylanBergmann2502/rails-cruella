@@ -42,6 +42,27 @@ gem "aws-sdk-s3", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 gem "rack-cors"
 
+# Pagination with Pagy [https://github.com/ddnexus/pagy]
+gem "pagy", "~> 9.4"
+
+# PostgreSQL full-text search [https://github.com/Casecommons/pg_search]
+gem "pg_search", "~> 2.3"
+
+# Object-based searching [https://github.com/activerecord-hackery/ransack]
+gem "ransack", "~> 4.2"
+
+# Counter cache management [https://github.com/magnusvk/counter_culture]
+gem "counter_culture", "~> 3.9"
+
+# Soft delete functionality [https://github.com/ActsAsParanoid/acts_as_paranoid]
+gem "acts_as_paranoid", "~> 0.10"
+
+# Bulk import for ActiveRecord [https://github.com/zdennis/activerecord-import]
+gem "activerecord-import", "~> 1.8"
+
+# Fast JSON:API serializer [https://github.com/procore/blueprinter]
+gem "blueprinter", "~> 1.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
