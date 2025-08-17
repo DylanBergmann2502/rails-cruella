@@ -5,6 +5,7 @@ volumes:
   postgres_data: {}
   postgres_data_backups: {}
   redis_data: {}
+  minio_data: {}
 
 services:
   postgres:
@@ -28,6 +29,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - minio
     volumes:
       - ../..:/app:z
     env_file:
@@ -73,3 +75,34 @@ services:
     ports:
       - "4567:4567"
     command: /start-sidekiq-web
+
+  minio:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/minio/Dockerfile
+    image: minio
+    container_name: minio
+    volumes:
+      - minio_data:/data
+    env_file:
+      - ./.envs/.minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  create_minio_buckets:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/minio/mc/Dockerfile
+    image: create_minio_buckets
+    container_name: create_minio_buckets
+    depends_on:
+      minio:
+        condition: service_healthy
+    env_file:
+      - ./.envs/.minio
