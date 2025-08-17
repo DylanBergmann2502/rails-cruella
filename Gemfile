@@ -4,19 +4,19 @@ source "https://rubygems.org"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.6"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem "puma", ">= 6.6.1"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-gem "redis", ">= 4.0.1"
+gem "redis", ">= 5.4.1"
 
 # Use Sidekiq for background job processing [https://github.com/sidekiq/sidekiq]
-gem "sidekiq", "~> 7.0"
+gem "sidekiq", "~> 8.0"
 
 # Use Sidekiq-cron for scheduled jobs [https://github.com/ondrejbartas/sidekiq-cron]
-gem "sidekiq-cron", "~> 1.9"
+gem "sidekiq-cron", "~> 2.3"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
