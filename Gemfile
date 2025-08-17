@@ -63,6 +63,9 @@ gem "activerecord-import", "~> 1.8"
 # Fast JSON:API serializer [https://github.com/procore/blueprinter]
 gem "blueprinter", "~> 1.0"
 
+# Comprehensive health check for production [https://github.com/ianheggie/health_check]
+gem "health_check", "~> 3.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
