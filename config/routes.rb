@@ -1,5 +1,10 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api/docs'
+  mount Rswag::Api::Engine => '/api/docs'
+  
+  # ReDoc endpoint for alternative API documentation
+  get '/api/redoc', to: 'redoc#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Comprehensive health checks using health_check gem
@@ -10,7 +15,7 @@ Rails.application.routes.draw do
   # /health_check/redis - Redis connectivity only
   # /health_check/s3 - S3/MinIO connectivity only
   health_check_routes
-  
+
   # Keep the simple /up endpoint for basic load balancer checks
   # Returns 200 if the app boots with no exceptions, otherwise 500
   get "up" => "rails/health#show", :as => :rails_health_check

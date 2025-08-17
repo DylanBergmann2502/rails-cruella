@@ -90,4 +90,7 @@ group :development, :test do
 
   # WebMock for stubbing HTTP requests [https://github.com/bblimke/webmock]
   gem "webmock", "~> 3.25"
+
+  # RSwag for API documentation [https://github.com/rswag/rswag]
+  gem "rswag", "~> 2.16"
 end

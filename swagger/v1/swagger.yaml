@@ -1,0 +1,11 @@
+---
+openapi: 3.0.1
+info:
+  title: Rails Cruella API
+  version: v1
+  description: A comprehensive Rails API boilerplate with modern features and best
+    practices
+paths: {}
+servers:
+- url: "/"
+  description: Current server
