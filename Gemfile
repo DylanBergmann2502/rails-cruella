@@ -93,4 +93,7 @@ group :development, :test do
 
   # RSwag for API documentation [https://github.com/rswag/rswag]
   gem "rswag", "~> 2.16"
+
+  # Rails Panel for Chrome extension debugging [https://github.com/dejan/rails_panel]
+  gem "meta_request", "~> 0.8"
 end
