@@ -79,6 +79,9 @@ GEM
       activesupport (>= 6.1, < 8.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    argon2 (2.3.2)
+      ffi (~> 1.15)
+      ffi-compiler (~> 1.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
     aws-partitions (1.1150.0)
@@ -140,6 +143,10 @@ GEM
       railties (>= 6.1.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
+      rake
     fugit (1.11.2)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -160,6 +167,8 @@ GEM
     json-schema (5.2.2)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
+    jwt (3.1.2)
+      base64
     kamal (2.7.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -204,7 +213,7 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.9-x64-mingw-ucrt)
+    nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
     ostruct (0.6.3)
     pagy (9.4.0)
@@ -212,7 +221,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.1-x64-mingw-ucrt)
+    pg (1.6.1-x86_64-linux)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
@@ -287,6 +296,18 @@ GEM
     reline (0.6.2)
       io-console (~> 0.5)
     rexml (3.4.1)
+    roda (3.95.0)
+      rack
+    rodauth (2.40.0)
+      roda (>= 2.6.0)
+      sequel (>= 4)
+    rodauth-model (0.4.0)
+      rodauth (~> 2.28)
+    rodauth-rails (2.1.0)
+      railties (>= 5.1, < 8.1)
+      roda (~> 3.76)
+      rodauth (~> 2.36)
+      rodauth-model (~> 0.2)
     rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
@@ -339,6 +360,11 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    sequel (5.95.1)
+      bigdecimal
+    sequel-activerecord_connection (2.0.0)
+      activerecord (>= 5.0, < 8.1)
+      sequel (~> 5.38)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
     sidekiq (8.0.7)
@@ -373,12 +399,11 @@ GEM
       rubocop-performance (~> 1.25.0)
     stringio (3.1.7)
     thor (1.4.0)
-    thruster (0.1.15)
+    thruster (0.1.15-x86_64-linux)
+    tilt (2.6.1)
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2025.2)
-      tzinfo (>= 1.0.0)
     unicode (0.4.4.5)
     unicode-display_width (3.1.5)
       unicode-emoji (~> 4.0, >= 4.0.4)
@@ -396,11 +421,12 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  x64-mingw-ucrt
+  x86_64-linux-gnu
 
 DEPENDENCIES
   activerecord-import (~> 1.8)
   acts_as_paranoid (~> 0.10)
+  argon2 (~> 2.3)
   aws-sdk-s3
   blueprinter (~> 1.0)
   bootsnap
@@ -410,6 +436,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.5)
   faker (~> 3.5)
   health_check (~> 3.1)
+  jwt (~> 3.1)
   kamal
   meta_request (~> 0.8)
   pagy (~> 9.4)
@@ -420,13 +447,16 @@ DEPENDENCIES
   rails (~> 8.0.2)
   ransack (~> 4.2)
   redis (>= 5.4.1)
+  rodauth-rails (~> 2.1)
   rspec-rails (~> 8.0)
   rswag (~> 2.16)
+  sequel-activerecord_connection (~> 2.0)
   shoulda-matchers (~> 6.5)
   sidekiq (~> 8.0)
   sidekiq-cron (~> 2.3)
   standard
   thruster
+  tilt (~> 2.6)
   tzinfo-data
   webmock (~> 3.25)
 

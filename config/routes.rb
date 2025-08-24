@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   
   # ReDoc endpoint for alternative API documentation
   get '/api/redoc', to: 'redoc#index'
+  
+  # Rodauth authentication endpoints
+  # Available at /auth/create-account, /auth/login, /auth/logout, etc.
+  # All endpoints accept and return JSON
+  mount RodauthApp, at: "/"
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Comprehensive health checks using health_check gem
