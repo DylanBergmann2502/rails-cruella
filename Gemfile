@@ -21,6 +21,9 @@ gem "sidekiq-cron", "~> 2.3"
 # Use Rodauth for authentication [https://rodauth.jeremyevans.net/]
 gem "rodauth-rails", "~> 2.1"
 
+# Use Pundit for authorization [https://github.com/varvet/pundit]
+gem "pundit", "~> 2.5"
+
 # Enables Sequel to use Active Record's database connection
 gem "sequel-activerecord_connection", "~> 2.0", require: false
 
