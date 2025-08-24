@@ -1,0 +1,78 @@
+# deploy/local/setup.yml
+name: rails_cruella_local
+
+volumes:
+  minio_data: {}
+  postgres_data: {}
+  redis_data: {}
+
+services:
+  minio:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/minio/Dockerfile
+    image: minio
+    container_name: minio
+    volumes:
+      - minio_data:/data
+    env_file:
+      - ./.envs/.minio
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 2s
+
+  create_minio_buckets:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/minio/mc/Dockerfile
+    image: create_minio_buckets
+    container_name: create_minio_buckets
+    depends_on:
+      minio:
+        condition: service_healthy
+    env_file:
+      - ./.envs/.minio
+
+  postgres:
+    build:
+      context: ../..
+      dockerfile: ./deploy/production/compose/postgres/Dockerfile
+    image: postgres
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.postgres
+
+  redis:
+    image: docker.io/redis:8
+    container_name: redis
+    volumes:
+      - redis_data:/data
+
+  rails_migrations:
+    build:
+      context: ../..
+      dockerfile: ./deploy/local/compose/rails/Dockerfile
+    image: rails
+    container_name: rails_migrations
+    depends_on:
+      - postgres
+    volumes:
+      - ../../:/app:z
+    env_file:
+      - ./.envs/.rails
+    command: /migrate
+
+  setup_complete:
+    image: alpine:latest
+    container_name: setup_complete
+    depends_on:
+      create_minio_buckets:
+        condition: service_completed_successfully
+      rails_migrations:
+        condition: service_completed_successfully
+    command: sh -c "echo 'Setup completed successfully' && exit 0"

@@ -1,0 +1,47 @@
+# deploy/production/setup.yml
+name: rails_cruella_production
+
+volumes:
+  postgres_data: {}
+  postgres_data_backups: {}
+  redis_data: {}
+
+services:
+  postgres:
+    build:
+      context: ../..
+      dockerfile: ./deploy/production/compose/postgres/Dockerfile
+    image: postgres
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.postgres
+
+  redis:
+    image: docker.io/redis:6
+    container_name: redis
+    volumes:
+      - redis_data:/data
+
+  rails_migrations:
+    build:
+      context: ../..
+      dockerfile: ./deploy/production/compose/rails/Dockerfile
+    image: rails
+    container_name: rails_migrations
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.envs/.rails
+    command: /migrate
+
+  setup_complete:
+    image: alpine:latest
+    container_name: setup_complete
+    depends_on:
+      rails_migrations:
+        condition: service_completed_successfully
+    command: sh -c "echo 'Setup completed successfully' && exit 0"F

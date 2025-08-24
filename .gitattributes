@@ -17,6 +17,7 @@ entrypoint text eol=lf
 start text eol=lf
 migrate text eol=lf
 bin/run text eol=lf
+bin/setup text eol=lf
 
 # Configuration files
 *.yml text eol=lf
