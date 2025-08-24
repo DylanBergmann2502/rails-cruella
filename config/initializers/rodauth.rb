@@ -1,3 +1,4 @@
+# app/config/initializers/rodauth.rb
 Rodauth::Rails.configure do |config|
   config.app = "RodauthApp"
   # config.middleware = false # disable auto-insertion of Rodauth middleware

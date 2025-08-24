@@ -1,3 +1,4 @@
+# app/policies/application_policy.rb
 # frozen_string_literal: true
 
 class ApplicationPolicy

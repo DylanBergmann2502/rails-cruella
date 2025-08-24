@@ -1,3 +1,4 @@
+# app/misc/rodauth_main.rb
 require "sequel/core"
 
 class RodauthMain < Rodauth::Rails::Auth
@@ -64,12 +65,12 @@ class RodauthMain < Rodauth::Rails::Auth
     # JWT Configuration
     jwt_access_token_period { 15.minutes }
     jwt_refresh_token_deadline_interval { 7.days }
-    
+
     # JWT refresh configuration
     jwt_refresh_token_key_param "refresh_token"
     jwt_refresh_token_key "refresh_token"
     jwt_access_token_key "access_token"
-    
+
     # Allow refresh with expired access token
     allow_refresh_with_expired_jwt_access_token? true
     expired_jwt_access_token_status 401

@@ -1,3 +1,4 @@
+# app/misc/rodauth_app.rb
 class RodauthApp < Rodauth::Rails::App
   # primary configuration
   configure RodauthMain

@@ -1,3 +1,4 @@
+# app/config/initializers/rswag_api.rb
 Rswag::Api.configure do |c|
 
   # Specify a root folder where Swagger JSON files are located
