@@ -24,6 +24,9 @@ gem "rodauth-rails", "~> 2.1"
 # Use Pundit for authorization [https://github.com/varvet/pundit]
 gem "pundit", "~> 2.5"
 
+# Use dry-validation for data validation [https://github.com/dry-rb/dry-validation]
+gem "dry-validation", "~> 1.11"
+
 # Enables Sequel to use Active Record's database connection
 gem "sequel-activerecord_connection", "~> 2.0", require: false
 
