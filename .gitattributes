@@ -11,11 +11,12 @@ config/credentials.yml.enc diff=rails_credentials
 # Ensure consistent line endings across all platforms
 * text=auto
 
-# Scripts should always use LF line endings
+# Scripts should always use LF line endings and be executable
 *.sh text eol=lf
 entrypoint text eol=lf
 start text eol=lf
 migrate text eol=lf
+bin/run text eol=lf
 
 # Configuration files
 *.yml text eol=lf
