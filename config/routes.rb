@@ -1,14 +1,14 @@
 # config/routes.rb
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api/docs'
-  mount Rswag::Api::Engine => '/api/docs'
+  mount Rswag::Ui::Engine => "/api/docs"
+  mount Rswag::Api::Engine => "/api/docs"
 
   # Convenience redirects for common swagger paths
-  get '/swagger', to: redirect('/api/docs')
-  get '/api/swagger', to: redirect('/api/docs')
+  get "/swagger", to: redirect("/api/docs")
+  get "/api/swagger", to: redirect("/api/docs")
 
   # ReDoc endpoint for alternative API documentation
-  get '/api/redoc', to: 'redoc#index'
+  get "/api/redoc", to: "redoc#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

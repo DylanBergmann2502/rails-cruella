@@ -1,7 +1,7 @@
 # app/models/application_record.rb
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
-  
+
   # Available gem mixins for models:
   #
   # PgSearch (PostgreSQL full-text search):

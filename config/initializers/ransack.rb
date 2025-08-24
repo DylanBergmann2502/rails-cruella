@@ -2,7 +2,7 @@
 Ransack.configure do |config|
   # Raise errors when unknown predicates are used
   config.ignore_unknown_conditions = false
-  
+
   # Add custom predicates if needed
   # config.add_predicate "title_starts_with", :arel_predicate => "matches", :formatter => proc { |v| "#{v}%" }
 

@@ -2,10 +2,10 @@
 class BaseBlueprint < Blueprinter::Base
   # Common fields and configurations that all blueprints should have
   identifier :id
-  
+
   # Standard timestamps
   fields :created_at, :updated_at
-  
+
   # Helper method for paginated responses
   def self.paginated(collection, pagy)
     {
