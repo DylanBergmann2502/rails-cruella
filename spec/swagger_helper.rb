@@ -28,7 +28,16 @@ RSpec.configure do |config|
           url: '/',
           description: 'Current server'
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT'
+          }
+        }
+      }
     }
   }
 
