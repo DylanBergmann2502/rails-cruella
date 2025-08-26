@@ -53,7 +53,7 @@ GEM
       activemodel (= 8.0.2.1)
       activesupport (= 8.0.2.1)
       timeout (>= 0.4.0)
-    activerecord-import (1.8.1)
+    activerecord-import (2.2.0)
       activerecord (>= 4.2)
     activestorage (8.0.2.1)
       actionpack (= 8.0.2.1)
@@ -461,7 +461,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
-  activerecord-import (~> 1.8)
+  activerecord-import (~> 2.2)
   acts_as_paranoid (~> 0.10)
   argon2 (~> 2.3)
   aws-sdk-s3

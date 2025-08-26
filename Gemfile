@@ -39,7 +39,7 @@ gem "pagy", "~> 9.4"
 # Model Utilities
 gem "counter_culture", "~> 3.9"
 gem "acts_as_paranoid", "~> 0.10"
-gem "activerecord-import", "~> 1.8"
+gem "activerecord-import", "~> 2.2"
 
 # Deployment & Monitoring
 gem "kamal", require: false
