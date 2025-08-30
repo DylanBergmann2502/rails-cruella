@@ -29,17 +29,17 @@ gem "tilt", "~> 2.6", require: false
 # API & Serialization
 gem "dry-validation", "~> 1.11"
 gem "rack-cors"
-gem "blueprinter", "~> 1.0"
+gem "blueprinter", "~> 1.1"
 
 # Search & Filtering
 gem "pg_search", "~> 2.3"
-gem "ransack", "~> 4.2"
+gem "ransack", "~> 4.3"
 gem "pagy", "~> 9.4"
 
 # Model Utilities
-gem "counter_culture", "~> 3.9"
+gem "counter_culture", "~> 3.11"
 gem "acts_as_paranoid", "~> 0.10"
-gem "activerecord-import", "~> 1.8"
+gem "activerecord-import", "~> 2.2"
 
 # Deployment & Monitoring
 gem "kamal", require: false
