@@ -16,8 +16,9 @@ config/credentials.yml.enc diff=rails_credentials
 entrypoint text eol=lf
 start text eol=lf
 migrate text eol=lf
-bin/run text eol=lf
-bin/setup text eol=lf
+bin/* text eol=lf executable
+script/* text eol=lf executable
+scripts/* text eol=lf executable
 
 # Configuration files
 *.yml text eol=lf
