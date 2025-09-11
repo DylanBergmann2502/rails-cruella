@@ -29,7 +29,7 @@ gem "tilt", "~> 2.6", require: false
 # API & Serialization
 gem "dry-validation", "~> 1.11"
 gem "rack-cors"
-gem "blueprinter", "~> 1.1"
+gem "blueprinter", "~> 1.2"
 
 # Search & Filtering
 gem "pg_search", "~> 2.3"
