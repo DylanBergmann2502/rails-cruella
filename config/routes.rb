@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   # Rodauth authentication endpoints - mount last to avoid conflicts
   # Available at /auth/create-account, /auth/login, /auth/logout, etc.
   # All endpoints accept and return JSON
-  mount RodauthApp, at: "/"
+  mount RodauthApp, at: "/auth"
 
   # Defines the root path route ("/")
   # root "posts#index"
