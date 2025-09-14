@@ -84,7 +84,7 @@ GEM
       ffi-compiler (~> 1.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1153.0)
+    aws-partitions (1.1159.0)
     aws-sdk-core (3.232.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -96,7 +96,7 @@ GEM
     aws-sdk-kms (1.112.0)
       aws-sdk-core (~> 3, >= 3.231.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.198.0)
+    aws-sdk-s3 (1.199.0)
       aws-sdk-core (~> 3, >= 3.231.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -105,15 +105,15 @@ GEM
     base64 (0.3.0)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.1)
-    bigdecimal (3.2.2)
-    blueprinter (1.1.2)
+    bigdecimal (3.2.3)
+    blueprinter (1.2.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     brakeman (7.1.0)
       racc
     builder (3.3.0)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.3)
+    connection_pool (2.5.4)
     counter_culture (3.11.2)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
@@ -173,7 +173,7 @@ GEM
       tzinfo
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
-    factory_bot_rails (6.5.0)
+    factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
     faker (3.5.2)
@@ -187,7 +187,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.2.0)
+    hashdiff (1.2.1)
     health_check (3.1.0)
       railties (>= 5.0)
     i18n (1.14.7)
@@ -256,25 +256,25 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.1-x86_64-linux)
+    pg (1.6.2-x86_64-linux)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.5.1)
     psych (5.2.6)
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.1)
+    puma (7.0.3)
       nio4r (~> 2.0)
-    pundit (2.5.0)
+    pundit (2.5.1)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.2.0)
+    rack (3.2.1)
     rack-contrib (2.5.0)
       rack (< 4)
     rack-cors (3.0.0)
@@ -327,13 +327,13 @@ GEM
       psych (>= 4.0.0)
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.25.2)
+    redis-client (0.25.3)
       connection_pool
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
-    rexml (3.4.2)
-    roda (3.95.0)
+    rexml (3.4.4)
+    roda (3.96.0)
       rack
     rodauth (2.40.0)
       roda (>= 2.6.0)
@@ -377,7 +377,7 @@ GEM
     rswag-ui (2.16.0)
       actionpack (>= 5.2, < 8.1)
       railties (>= 5.2, < 8.1)
-    rubocop (1.75.8)
+    rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -385,7 +385,7 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.44.0, < 2.0)
+      rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.46.0)
@@ -397,7 +397,7 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
-    sequel (5.95.1)
+    sequel (5.96.0)
       bigdecimal
     sequel-activerecord_connection (2.0.0)
       activerecord (>= 5.0, < 8.1)
@@ -422,10 +422,10 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
-    standard (1.50.0)
+    standard (1.51.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
-      rubocop (~> 1.75.5)
+      rubocop (~> 1.80.2)
       standard-custom (~> 1.0.0)
       standard-performance (~> 1.8)
     standard-custom (1.0.2)
@@ -442,9 +442,9 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode (0.4.4.5)
-    unicode-display_width (3.1.5)
-      unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.0.4)
+    unicode-display_width (3.2.0)
+      unicode-emoji (~> 4.1)
+    unicode-emoji (4.1.0)
     uri (1.0.3)
     useragent (0.16.11)
     webmock (3.25.1)
@@ -458,14 +458,14 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  x86_64-linux
+  x86_64-linux-gnu
 
 DEPENDENCIES
   activerecord-import (~> 2.2)
   acts_as_paranoid (~> 0.10)
   argon2 (~> 2.3)
   aws-sdk-s3
-  blueprinter (~> 1.1)
+  blueprinter (~> 1.2)
   bootsnap
   brakeman
   counter_culture (~> 3.11)
@@ -480,7 +480,7 @@ DEPENDENCIES
   pagy (~> 9.4)
   pg (~> 1.6)
   pg_search (~> 2.3)
-  puma (>= 6.6.1)
+  puma (>= 7.0.3)
   pundit (~> 2.5)
   rack-cors
   rails (~> 8.0.2)
@@ -500,4 +500,4 @@ DEPENDENCIES
   webmock (~> 3.25)
 
 BUNDLED WITH
-   2.7.1
+   2.7.2

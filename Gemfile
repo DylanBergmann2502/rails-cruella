@@ -10,7 +10,7 @@ gem "redis", ">= 5.4.1"
 gem "aws-sdk-s3", require: false
 
 # Web Server & Performance
-gem "puma", ">= 6.6.1"
+gem "puma", ">= 7.0.3"
 gem "bootsnap", require: false
 gem "thruster", require: false
 
@@ -29,7 +29,7 @@ gem "tilt", "~> 2.6", require: false
 # API & Serialization
 gem "dry-validation", "~> 1.11"
 gem "rack-cors"
-gem "blueprinter", "~> 1.1"
+gem "blueprinter", "~> 1.2"
 
 # Search & Filtering
 gem "pg_search", "~> 2.3"
