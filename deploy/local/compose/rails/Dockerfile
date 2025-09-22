@@ -1,5 +1,5 @@
 # deploy/local/compose/rails/Dockerfile
-FROM ruby:3.4.5-slim
+FROM ruby:3.4.6-slim
 
 # Install system dependencies
 RUN apt-get update -qq && apt-get install --no-install-recommends -y \
