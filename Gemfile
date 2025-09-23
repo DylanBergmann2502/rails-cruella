@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 
 # Core Framework
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.0.3"
 
 # Database & Storage
 gem "pg", "~> 1.6"
