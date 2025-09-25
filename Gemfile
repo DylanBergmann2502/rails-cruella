@@ -33,7 +33,7 @@ gem "blueprinter", "~> 1.2"
 
 # Search & Filtering
 gem "pg_search", "~> 2.3"
-gem "ransack", "~> 4.3"
+gem "ransack", "~> 4.4"
 gem "pagy", "~> 9.4"
 
 # Model Utilities
