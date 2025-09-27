@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 
 # Core Framework
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.0.3"
 
 # Database & Storage
 gem "pg", "~> 1.6"
@@ -10,7 +10,7 @@ gem "redis", ">= 5.4.1"
 gem "aws-sdk-s3", require: false
 
 # Web Server & Performance
-gem "puma", ">= 7.0.3"
+gem "puma", ">= 7.0.4"
 gem "bootsnap", require: false
 gem "thruster", require: false
 
@@ -33,7 +33,7 @@ gem "blueprinter", "~> 1.2"
 
 # Search & Filtering
 gem "pg_search", "~> 2.3"
-gem "ransack", "~> 4.3"
+gem "ransack", "~> 4.4"
 gem "pagy", "~> 9.4"
 
 # Model Utilities
