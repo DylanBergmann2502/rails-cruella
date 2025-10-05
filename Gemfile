@@ -41,6 +41,9 @@ gem "counter_culture", "~> 3.11"
 gem "acts_as_paranoid", "~> 0.10"
 gem "activerecord-import", "~> 2.2"
 
+# API Documentation
+gem "rswag", "~> 2.16"
+
 # Deployment & Monitoring
 gem "kamal", require: false
 gem "health_check", "~> 3.1"
@@ -70,7 +73,4 @@ group :development, :test do
   # Test Utilities
   gem "shoulda-matchers", "~> 6.5"
   gem "webmock", "~> 3.25"
-
-  # API Documentation
-  gem "rswag", "~> 2.16"
 end

@@ -5,6 +5,8 @@ volumes:
   postgres_data: {}
   postgres_data_backups: {}
   redis_data: {}
+  bootsnap_cache: {}
+  bundle_cache: {}
 
 services:
   postgres:
@@ -34,6 +36,9 @@ services:
     depends_on:
       - postgres
       - redis
+    volumes:
+      - bootsnap_cache:/app/tmp/cache/bootsnap
+      - bundle_cache:/usr/local/bundle
     env_file:
       - ./.envs/.rails
     command: /migrate

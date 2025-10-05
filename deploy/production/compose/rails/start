@@ -5,8 +5,14 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Run database migrations
-rails db:migrate
+# Remove stale PID file if it exists
+rm -f /rails/tmp/pids/server.pid
+
+# Only run migrations if there are pending ones
+if ./bin/rails db:migrate:status &>/dev/null && ./bin/rails db:migrate:status | grep -q "down"; then
+  echo "Running pending migrations..."
+  ./bin/rails db:migrate
+fi
 
 # Start the Rails server with Thruster
 exec ./bin/thrust ./bin/rails server -b 0.0.0.0 -p 8000

@@ -6,6 +6,8 @@ volumes:
   postgres_data_backups: {}
   redis_data: {}
   minio_data: {}
+  bootsnap_cache: {}
+  bundle_cache: {}
 
 services:
   postgres:
@@ -32,6 +34,8 @@ services:
       - minio
     volumes:
       - ../..:/app:z
+      - bootsnap_cache:/app/tmp/cache/bootsnap
+      - bundle_cache:/usr/local/bundle
     env_file:
       - ./.envs/.rails
     ports:
@@ -55,6 +59,8 @@ services:
       - postgres
     volumes:
       - ../..:/app:z
+      - bootsnap_cache:/app/tmp/cache/bootsnap
+      - bundle_cache:/usr/local/bundle
     env_file:
       - ./.envs/.rails
     command: /start-sidekiq-worker
@@ -70,6 +76,8 @@ services:
       - postgres
     volumes:
       - ../..:/app:z
+      - bootsnap_cache:/app/tmp/cache/bootsnap
+      - bundle_cache:/usr/local/bundle
     env_file:
       - ./.envs/.rails
     ports:

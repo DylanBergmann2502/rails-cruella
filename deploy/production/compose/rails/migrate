@@ -5,5 +5,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Run database migrations
-rails db:migrate
+# Only create/migrate DB if it doesn't exist or has pending migrations
+if ! ./bin/rails db:version &>/dev/null; then
+  echo "Database not found, creating..."
+  ./bin/rails db:create db:schema:load
+else
+  echo "Running migrations..."
+  ./bin/rails db:migrate
+fi

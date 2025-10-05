@@ -1,19 +1,27 @@
 # config/initializers/activerecord_import.rb
 
 # Configure ActiveRecord Import globally
-Rails.application.config.after_initialize do
-  if defined?(ActiveRecord::Import)
-    # Set default options for all bulk imports
-    ActiveRecord::Import.configure do |config|
-      # Global default options
-      config.default_options = {
-        validate: true,                    # Validate records before import
-        timestamps: true,                  # Set created_at/updated_at
-        on_duplicate_key_update: {         # Handle duplicates
-          conflict_target: [:id],
-          columns: :all
-        }
+module ActiveRecordImportDefaults
+  # Wrapper method that applies default options to all imports
+  def import_with_defaults(records, options = {})
+    default_options = {
+      validate: true,           # Validate records before import
+      timestamps: true,         # Set created_at/updated_at
+      on_duplicate_key_update: { # Handle duplicates (Postgres/MySQL only)
+        conflict_target: [:id],
+        columns: :all
       }
-    end
+    }
+
+    # Merge user options with defaults (user options take precedence)
+    merged_options = default_options.merge(options)
+
+    # Call the original import method
+    import(records, merged_options)
   end
+end
+
+# Extend ActiveRecord::Base with our defaults
+ActiveSupport.on_load(:active_record) do
+  extend ActiveRecordImportDefaults
 end

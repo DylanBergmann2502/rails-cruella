@@ -45,7 +45,14 @@ RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
-# Copy production scripts
+# Final stage for app image
+FROM base
+
+# Copy built artifacts: gems, application
+COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
+COPY --from=build /rails /rails
+
+# Copy production scripts directly to final stage
 COPY ./deploy/production/compose/rails/entrypoint /entrypoint
 COPY ./deploy/production/compose/rails/start /start
 COPY ./deploy/production/compose/rails/migrate /migrate
@@ -53,13 +60,6 @@ COPY ./deploy/production/compose/rails/sidekiq/worker/start /start-sidekiq-worke
 COPY ./deploy/production/compose/rails/sidekiq/web/start /start-sidekiq-web
 RUN sed -i 's/\r$//g' /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web && \
     chmod +x /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web
-
-# Final stage for app image
-FROM base
-
-# Copy built artifacts: gems, application
-COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
-COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \

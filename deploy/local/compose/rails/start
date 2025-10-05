@@ -5,8 +5,17 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Create and migrate database if needed
-rails db:prepare
+# Remove stale PID file if it exists
+rm -f /app/tmp/pids/server.pid
+
+# Only create/migrate DB if it doesn't exist or has pending migrations
+if ! rails db:version &>/dev/null; then
+  echo "Database not found, creating..."
+  rails db:create db:schema:load
+elif rails db:migrate:status | grep -q "down"; then
+  echo "Running pending migrations..."
+  rails db:migrate
+fi
 
 # Run the development server
 exec rails server -b 0.0.0.0 -p 8000
