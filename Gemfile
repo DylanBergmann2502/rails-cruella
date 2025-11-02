@@ -38,7 +38,7 @@ gem "pagy", "~> 9.4"
 
 # Model Utilities
 gem "counter_culture", "~> 3.11"
-gem "acts_as_paranoid", "~> 0.10"
+gem "acts_as_paranoid", "~> 0.11"
 gem "activerecord-import", "~> 2.2"
 
 # API Documentation
