@@ -2,15 +2,15 @@
 source "https://rubygems.org"
 
 # Core Framework
-gem "rails", "~> 8.0.3"
+gem "rails", "~> 8.1.1"
 
 # Database & Storage
 gem "pg", "~> 1.6"
-gem "redis", ">= 5.4.1"
+gem "redis", "~> 5.4"
 gem "aws-sdk-s3", require: false
 
 # Web Server & Performance
-gem "puma", ">= 7.0.4"
+gem "puma", "~> 7.1"
 gem "bootsnap", require: false
 gem "thruster", require: false
 
@@ -34,15 +34,15 @@ gem "blueprinter", "~> 1.2"
 # Search & Filtering
 gem "pg_search", "~> 2.3"
 gem "ransack", "~> 4.4"
-gem "pagy", "~> 9.4"
+gem "pagy", "~> 43.1"
 
 # Model Utilities
 gem "counter_culture", "~> 3.11"
-gem "acts_as_paranoid", "~> 0.10"
+gem "acts_as_paranoid", "~> 0.11"
 gem "activerecord-import", "~> 2.2"
 
 # API Documentation
-gem "rswag", "~> 2.16"
+gem "rswag", "~> 2.17"
 
 # Deployment & Monitoring
 gem "kamal", require: false
@@ -71,6 +71,6 @@ group :development, :test do
   gem "faker", "~> 3.5"
 
   # Test Utilities
-  gem "shoulda-matchers", "~> 6.5"
-  gem "webmock", "~> 3.25"
+  gem "shoulda-matchers", "~> 7.0"
+  gem "webmock", "~> 3.26"
 end
