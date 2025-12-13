@@ -56,12 +56,6 @@ case "$1" in
         docker compose -f $COMPOSE_FILE up --build --remove-orphans "$@"
         ;;
 
-    "start:lite")
-        check_docker
-        shift  # Remove 'start:lite' from arguments
-        docker compose -f $COMPOSE_FILE up --build --remove-orphans postgres rails minio
-        ;;
-
     "stop")
         check_docker
         shift  # Remove 'stop' from arguments
@@ -194,7 +188,6 @@ case "$1" in
         echo "  build               - Build all containers"
         echo "  up [options]        - Start containers in attached mode"
         echo "  start [options]     - Build and start containers with orphan removal"
-        echo "  start:lite          - Build and start only \`rails\`, \`postgres\`, and \`minio\`"
         echo "  stop [options]      - Stop containers"
         echo "  down [options]      - Stop and remove containers"
         echo "  logs                - View container logs"

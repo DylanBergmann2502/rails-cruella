@@ -19,7 +19,7 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
-  # Store uploaded files using S3/MinIO when USE_S3_STORAGE is enabled
+  # Store uploaded files using S3 when USE_S3_STORAGE is enabled
   config.active_storage.service = (ENV.fetch("USE_S3_STORAGE", "false") == "true") ? :amazon : :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.

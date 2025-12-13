@@ -1,8 +1,0 @@
-# deploy/production/.envs/.minio
-# MinIO Production Configuration
-
-MINIO_ROOT_USER=minioadmin
-MINIO_ROOT_PASSWORD=minioadmin
-MINIO_ACCESS_KEY=nrAwGZz5cQftHkbrhLkk
-MINIO_SECRET_KEY=33YmxVcQOh9NTpeToJM6lLdadFxgd1jje09ouUeq
-MINIO_BUCKET_NAME=production-rails-cruella

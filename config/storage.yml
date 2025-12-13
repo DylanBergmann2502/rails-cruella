@@ -7,8 +7,8 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-# S3/MinIO storage backend
-# Local development uses MinIO, production can use S3 or MinIO
+# S3 storage backend
+# Local development uses SeaweedFS, production can use S3 or SeaweedFS
 amazon:
   service: S3
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>

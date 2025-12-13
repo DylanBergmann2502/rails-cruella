@@ -27,7 +27,7 @@ Rails.application.configure do
   # Change to :null_store to avoid any caching.
   config.cache_store = :memory_store
 
-  # Store uploaded files using S3/MinIO when USE_S3_STORAGE is enabled
+  # Store uploaded files using S3 when USE_S3_STORAGE is enabled
   config.active_storage.service = (ENV.fetch("USE_S3_STORAGE", "false") == "true") ? :amazon : :local
 
   # Don't care if the mailer can't send.

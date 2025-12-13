@@ -92,6 +92,6 @@ print_status $GREEN "✨ Setup completed successfully!"
 print_status $GREEN "The application is now running. You can access it at:"
 print_status $GREEN "- Rails API: http://localhost:8000"
 print_status $GREEN "- Sidekiq Web UI: http://localhost:4567"
-print_status $GREEN "- MinIO Console: http://localhost:9001"
+print_status $GREEN "- SeaweedFS UI: http://localhost:8888"
 
 exit 0

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # /health_check/all - Full checks (database, migrations, custom, redis, sidekiq-redis, s3)
   # /health_check/database - Database connectivity only
   # /health_check/redis - Redis connectivity only
-  # /health_check/s3 - S3/MinIO connectivity only
+  # /health_check/s3 - S3 connectivity only
   health_check_routes
 
   # Keep the simple /up endpoint for basic load balancer checks

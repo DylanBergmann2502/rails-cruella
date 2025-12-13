@@ -31,7 +31,7 @@ HealthCheck.setup do |config|
   # config.basic_auth_username = ENV["HEALTH_CHECK_USERNAME"]
   # config.basic_auth_password = ENV["HEALTH_CHECK_PASSWORD"]
 
-  # Custom S3/MinIO check that works with Rails 8
+  # Custom S3 check that works with Rails 8
   config.add_custom_check("s3") do
     if Rails.env.production? || ENV["USE_S3_STORAGE"] == "true"
       require "aws-sdk-s3"
