@@ -253,7 +253,7 @@ GEM
     nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     ostruct (0.6.3)
-    pagy (43.1.8)
+    pagy (43.2.0)
       json
       yaml
     parallel (1.27.0)
@@ -484,7 +484,7 @@ DEPENDENCIES
   jwt (~> 3.1)
   kamal
   meta_request (~> 0.8)
-  pagy (~> 43.1)
+  pagy (~> 43.2)
   pg (~> 1.6)
   pg_search (~> 2.3)
   puma (~> 7.1)

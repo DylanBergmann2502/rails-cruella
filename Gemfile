@@ -34,7 +34,7 @@ gem "blueprinter", "~> 1.2"
 # Search & Filtering
 gem "pg_search", "~> 2.3"
 gem "ransack", "~> 4.4"
-gem "pagy", "~> 43.1"
+gem "pagy", "~> 43.2"
 
 # Model Utilities
 gem "counter_culture", "~> 3.11"

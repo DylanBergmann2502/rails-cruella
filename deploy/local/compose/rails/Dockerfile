@@ -29,7 +29,7 @@ RUN groupadd --gid 1000 dev-user \
 
 # Configure jemalloc
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
-ENV RAILS_ENV=development
+ENV RAILS_ENV="development"
 
 # Update Ruby build tools to latest versions
 RUN gem update --system --no-document && \
@@ -44,10 +44,8 @@ RUN bundle config set --global path '/usr/local/bundle' && \
 
 WORKDIR /app
 
-# Copy Gemfiles
+# Install application gems
 COPY Gemfile Gemfile.lock* ./
-
-# Install gems (this will generate proper Gemfile.lock)
 RUN bundle install
 
 # Copy scripts
