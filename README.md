@@ -23,7 +23,7 @@ License: MIT
 
 - `PostgreSQL` (Database)
 - `Redis` + `Sidekiq` (Background jobs and queueing)
-- `MinIO/S3` (File storage)
+- `S3/SeaweedFS` (File storage)
 - `CORS` support for cross-origin requests
 
 ### Development & Quality
