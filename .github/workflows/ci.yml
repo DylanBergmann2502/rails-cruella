@@ -91,7 +91,7 @@ jobs:
       - name: Test API health endpoint
         run: |
           sleep 10
-          curl -f http://localhost:8000/health_check/ || exit 1
+          curl -f http://localhost:8000/health
 
       - name: Tear down containers
         run: docker compose -f deploy/local/web.yml down

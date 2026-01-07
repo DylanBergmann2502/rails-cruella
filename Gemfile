@@ -46,7 +46,6 @@ gem "rswag", "~> 2.17"
 
 # Deployment & Monitoring
 gem "kamal", require: false
-gem "health_check", "~> 3.1"
 
 # Platform-specific
 gem "tzinfo-data", platforms: %i[windows jruby]

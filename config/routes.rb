@@ -12,18 +12,23 @@ Rails.application.routes.draw do
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Comprehensive health checks using health_check gem
+  # Custom health check endpoints
   # Available endpoints:
-  # /health_check - Basic checks (database, migrations, custom)
-  # /health_check/all - Full checks (database, migrations, custom, redis, sidekiq-redis, s3)
-  # /health_check/database - Database connectivity only
-  # /health_check/redis - Redis connectivity only
-  # /health_check/s3 - S3 connectivity only
-  health_check_routes
+  # GET /health or /health/all - All checks (database, redis, sidekiq, s3)
+  # GET /health/database - Database connectivity only
+  # GET /health/redis - Redis connectivity only
+  # GET /health/sidekiq - Sidekiq processes check
+  # GET /health/s3 - S3 connectivity only
+  get "health", to: "health#all"
+  get "health/all", to: "health#all"
+  get "health/database", to: "health#database"
+  get "health/redis", to: "health#redis"
+  get "health/sidekiq", to: "health#sidekiq"
+  get "health/s3", to: "health#s3"
 
-  # Keep the simple /up endpoint for basic load balancer checks
+  # Simple /up endpoint for basic load balancer checks
   # Returns 200 if the app boots with no exceptions, otherwise 500
-  get "up" => "rails/health#show", :as => :rails_health_check
+  get "up", to: "rails/health#show", as: :rails_health_check
 
   # Rodauth authentication endpoints - mount last to avoid conflicts
   # Available at /auth/create-account, /auth/login, /auth/logout, etc.
