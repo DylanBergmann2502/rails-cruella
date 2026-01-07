@@ -15,7 +15,7 @@ gem "bootsnap", require: false
 gem "thruster", require: false
 
 # Background Jobs
-gem "sidekiq", "~> 8.0"
+gem "sidekiq", "~> 8.1"
 gem "sidekiq-cron", "~> 2.3"
 
 # Authentication & Authorization
@@ -37,7 +37,7 @@ gem "ransack", "~> 4.4"
 gem "pagy", "~> 43.2"
 
 # Model Utilities
-gem "counter_culture", "~> 3.11"
+gem "counter_culture", "~> 3.12"
 gem "acts_as_paranoid", "~> 0.11"
 gem "activerecord-import", "~> 2.2"
 
