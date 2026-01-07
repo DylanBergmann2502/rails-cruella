@@ -6,7 +6,7 @@ set -o pipefail
 set -o nounset
 
 # Wait for postgres and redis to be ready
-rails db:prepare
+bundle exec rails db:prepare
 
 # Run Sidekiq worker
 exec bundle exec sidekiq
