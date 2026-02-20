@@ -8,7 +8,7 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 # S3 storage backend
-# Local development uses SeaweedFS, production can use S3 or SeaweedFS
+# Local development uses Garage, production can use S3 or Garage
 amazon:
   service: S3
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>

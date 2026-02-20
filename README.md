@@ -1,6 +1,6 @@
 # Rails Cruella
 
-This is an opinionated Rails boilerplate designed as a comprehensive Rails API starter for REST API applications.
+An opinionated Rails boilerplate for REST API development.
 
 [![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
 [![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)](https://rubyonrails.org/)
@@ -8,103 +8,94 @@ This is an opinionated Rails boilerplate designed as a comprehensive Rails API s
 
 License: MIT
 
-## Techstack
+## Tech Stack
 
 ### Backend
+- **Rails API** — API-only mode
+- **Rodauth** — authentication with Argon2 password hashing
+- **ActiveRecord** + **PostgreSQL**
+- **Sidekiq** + **Redis** — background jobs with cron scheduling
+- **Ransack** — advanced filtering
+- **Pagy** — pagination
+- **Blueprinter** — JSON serialization
 
-- `Rails API` (API-only mode)
-- `ActiveRecord` (ORM)
-- `Rodauth` (Authentication with Argon2 password hashing)
-- `Blueprinter` (JSON serialization)
-- `Ransack` (Advanced filtering)
-- `Pagy` (Pagination)
+### Infrastructure
+- **Garage** — S3-compatible object storage
+- **RSwag** — Swagger API docs
+- **Brakeman** — security analysis
+- **StandardRB** — formatter + linter
+- **RSpec** — test suite
 
-### Infrastructure & Services
+## Service URLs (local)
 
-- `PostgreSQL` (Database)
-- `Redis` + `Sidekiq` (Background jobs and queueing)
-- `S3/SeaweedFS` (File storage)
-- `CORS` support for cross-origin requests
+| Service | URL |
+|---|---|
+| Rails API | http://localhost:8000 |
+| Swagger UI | http://localhost:8000/api-docs |
+| Sidekiq Web UI | http://localhost:4567 |
+| Garage S3 API | http://localhost:3900 |
+| Garage Web UI | http://localhost:3909 |
 
-### Development & Quality
+## Setup
 
-- `StandardRB` (Code formatting and linting)
-- `Brakeman` (Security analysis)
-- `RSpec` (Testing framework)
-- `RSwag` (API documentation with Swagger)
-- `Health Check` (Application monitoring)
+Requires `docker` and `docker compose`.
 
-## Basic Commands
+```sh
+docker --version
+docker compose version
+```
 
-### Installation
+**Unix (WSL, Linux):**
 
-- Make sure you have `docker` and `docker compose` installed:
+```sh
+chmod +x ./bin/setup ./bin/run
+./bin/setup
+```
 
-    ```sh
-    docker --version
-    docker compose version
-    ```
+The `./bin/setup` script pulls images, runs migrations, initializes the Garage bucket, and starts all services. See `./bin/run` for all available dev shortcuts.
 
-- Set up the project for the first time (developing on `WSL` or `Linux` is **required** - Windows native is not supported):
+## Common Commands
 
-    ```sh
-    chmod +x ./bin/setup
-    chmod +x ./bin/run
-    ./bin/setup
-    ```
+All commands route through `./bin/run`:
 
-- **Note**: Unlike Django Hans, Rails Cruella only supports Linux/WSL environments. No `.bat` files are provided for Windows native development.
+### Lifecycle
 
-- Have a look at `./bin/run` as it contains many shortcuts for ease of development as well as `./bin/setup` for setting up your project unanimously across team members.
+```sh
+./bin/run start        # Build and start all services
+./bin/run stop         # Stop containers
+./bin/run down         # Stop and remove containers
+./bin/run logs         # Tail container logs
+```
 
-## Useful Commands
+### Rails
 
-- To start up the development server, run:
+```sh
+./bin/run rails <command>    # Run any Rails command
+./bin/run console            # Rails console
+./bin/run generate <args>    # Rails generators
+./bin/run migrate            # Run migrations
+./bin/run rollback [steps]   # Rollback migrations
+./bin/run seed               # Seed the database
+./bin/run reset              # Reset the database
+```
 
-    ```sh
-    docker compose -f deploy/local/web.yml up --build --remove-orphans
-    ```
+### Code Quality
 
-- To run `rails` command, use:
+```sh
+./bin/run rspec [options]    # Run tests
+./bin/run format [paths]     # StandardRB format
+./bin/run lint [paths]       # StandardRB lint
+./bin/run brakeman           # Security analysis
+```
 
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec rails <command>
-    ```
+### Background Jobs
 
-- To access `rails` console, run:
-
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec rails console
-    ```
-
-- To run database migrations, run:
-
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec rails db:migrate
-    ```
-
-- To format Ruby code with `StandardRB`, run:
-
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec standardrb --fix .
-    ```
-
-- To run security analysis with `Brakeman`, run:
-
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec brakeman
-    ```
-
-- To run tests with `RSpec`, run:
-
-    ```sh
-    docker compose -f deploy/local/web.yml run --rm rails bundle exec rspec
-    ```
+```sh
+./bin/run sidekiq web        # Start Sidekiq Web UI
+```
 
 ## Notes
 
-- You should generate new secrets for env variables in `deploy/local/.envs` and `deploy/production/.envs`.
-
-- This is an API-only Rails application. No frontend framework is included, and no nginx is used in production - Rails serves directly.
-
-- The project mirrors the Docker-first approach of Django Hans but is tailored specifically for Rails API development with Linux/WSL support only.
+- Generate fresh secrets for `deploy/local/.envs/` and `deploy/production/.envs/` before running.
+- API-only application — no frontend, no nginx in production. Rails serves directly.
+- WSL or Linux required. Windows native is not supported.

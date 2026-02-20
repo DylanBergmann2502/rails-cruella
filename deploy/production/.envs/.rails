@@ -28,9 +28,9 @@ SIDEKIQ_PASSWORD=iu90D1uXz6eYhWZsitPj8unkLXMTI2xiXQj6ukE1lYWAJyCbKG87i6rD8cSQhZq
 
 # S3 Storage
 USE_S3_STORAGE=true
-# For AWS S3 production, update these values:
 AWS_ACCESS_KEY_ID=nrAwGZz5cQftHkbrhLkk
 AWS_SECRET_ACCESS_KEY=33YmxVcQOh9NTpeToJM6lLdadFxgd1jje09ouUeq
 AWS_BUCKET_NAME=production-rails-cruella
-AWS_ENDPOINT_URL=http://seaweeds3:8333
+AWS_ENDPOINT_URL=http://garage:3900
+AWS_REGION=garage
 AWS_FORCE_PATH_STYLE=true
