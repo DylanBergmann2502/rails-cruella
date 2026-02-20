@@ -53,17 +53,17 @@ class HealthController < ActionController::API
 
   def database_healthy?
     ActiveRecord::Base.connection.execute("SELECT 1")
-    { healthy: true }
+    {healthy: true}
   rescue => e
-    { healthy: false, error: e.message }
+    {healthy: false, error: e.message}
   end
 
   def redis_healthy?
     redis = Redis.new(url: ENV.fetch("REDIS_URL", "redis://redis:6379/0"))
-    redis.ping == "PONG"
-    { healthy: true }
+    redis.ping
+    {healthy: true}
   rescue => e
-    { healthy: false, error: e.message }
+    {healthy: false, error: e.message}
   ensure
     redis&.close
   end
@@ -73,16 +73,16 @@ class HealthController < ActionController::API
     process_count = processes.size
 
     if process_count > 0
-      { healthy: true, processes: process_count }
+      {healthy: true, processes: process_count}
     else
-      { healthy: false, error: "No Sidekiq processes running" }
+      {healthy: false, error: "No Sidekiq processes running"}
     end
   rescue => e
-    { healthy: false, error: e.message }
+    {healthy: false, error: e.message}
   end
 
   def s3_healthy?
-    return { healthy: true, skipped: true, reason: "S3 storage not enabled" } unless s3_enabled?
+    return {healthy: true, skipped: true, reason: "S3 storage not enabled"} unless s3_enabled?
 
     client = Aws::S3::Client.new(
       access_key_id: ENV["AWS_ACCESS_KEY_ID"],
@@ -104,9 +104,9 @@ class HealthController < ActionController::API
     # Test delete object (delete permission)
     client.delete_object(bucket: bucket_name, key: test_key)
 
-    { healthy: true }
+    {healthy: true}
   rescue => e
-    { healthy: false, error: e.message }
+    {healthy: false, error: e.message}
   end
 
   def s3_enabled?

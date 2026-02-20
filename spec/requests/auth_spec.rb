@@ -5,6 +5,12 @@ RSpec.describe "Authentication API", type: :request do
   let(:user_email) { "test@example.com" }
   let(:user_password) { "password123" }
 
+  def create_account_and_login(email, password)
+    post "/auth/create-account", params: {email: email, password: password}, as: :json
+    post "/auth/login", params: {email: email, password: password}, as: :json
+    JSON.parse(response.body)
+  end
+
   path "/auth/create-account" do
     post "Create Account" do
       tags "Authentication"
@@ -38,7 +44,11 @@ RSpec.describe "Authentication API", type: :request do
         schema type: :object,
           properties: {
             error: {type: :string, example: "There was an error creating your account"},
-            "field-error": {type: :string, example: "password is too short (minimum is 8 characters)"}
+            "field-error": {
+              type: :array,
+              items: {type: :string},
+              example: ["password", "is too short (minimum is 8 characters)"]
+            }
           }
 
         let(:account) { {email: "", password: "short"} }
@@ -75,7 +85,7 @@ RSpec.describe "Authentication API", type: :request do
         let(:credentials) { {email: user_email, password: user_password} }
 
         before do
-          post "/auth/create-account", params: {email: user_email, password: user_password}
+          post "/auth/create-account", params: {email: user_email, password: user_password}, as: :json
         end
 
         run_test!
@@ -115,6 +125,13 @@ RSpec.describe "Authentication API", type: :request do
 
         let(:logout_body) { {} }
 
+        before do
+          tokens = create_account_and_login(user_email, user_password)
+          @access_token = tokens["access_token"]
+        end
+
+        let(:Authorization) { "Bearer #{@access_token}" }
+
         run_test!
       end
     end
@@ -143,17 +160,25 @@ RSpec.describe "Authentication API", type: :request do
             refresh_token: {type: :string, example: "eyJhbGciOiJIUzI1NiJ9...", description: "New JWT refresh token"}
           }
 
-        let(:refresh_params) { {refresh_token: "sample-refresh-token"} }
+        before do
+          tokens = create_account_and_login(user_email, user_password)
+          @access_token = tokens["access_token"]
+          @refresh_token = tokens["refresh_token"]
+        end
+
+        let(:Authorization) { "Bearer #{@access_token}" }
+        let(:refresh_params) { {refresh_token: @refresh_token} }
 
         run_test!
       end
 
-      response "401", "Invalid or expired refresh token" do
+      response "400", "Invalid JWT format" do
         schema type: :object,
           properties: {
-            error: {type: :string, example: "no JWT access token provided during refresh"}
+            error: {type: :string, example: "invalid JWT format or claim in Authorization header"}
           }
 
+        let(:Authorization) { "Bearer invalid" }
         let(:refresh_params) { {refresh_token: "invalid-refresh-token"} }
 
         run_test!
@@ -183,17 +208,24 @@ RSpec.describe "Authentication API", type: :request do
             success: {type: :string, example: "Your account has been closed"}
           }
 
+        before do
+          tokens = create_account_and_login(user_email, user_password)
+          @access_token = tokens["access_token"]
+        end
+
+        let(:Authorization) { "Bearer #{@access_token}" }
         let(:close_params) { {password: user_password} }
 
         run_test!
       end
 
-      response "401", "Invalid password or not authenticated" do
+      response "400", "Invalid JWT or not authenticated" do
         schema type: :object,
           properties: {
-            error: {type: :string, example: "There was an error closing your account"}
+            error: {type: :string, example: "invalid JWT format or claim in Authorization header"}
           }
 
+        let(:Authorization) { "Bearer invalid" }
         let(:close_params) { {password: "wrongpassword"} }
 
         run_test!

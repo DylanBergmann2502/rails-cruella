@@ -1,15 +1,15 @@
 # app/misc/rodauth_app.rb
 class RodauthApp < Rodauth::Rails::App
-    # primary configuration with custom prefix override
-    configure RodauthMain do
-      # Override the prefix to avoid double /auth when mounted at /auth
-      prefix nil
-    end
+  # primary configuration with custom prefix override
+  configure RodauthMain do
+    # Override the prefix to avoid double /auth when mounted at /auth
+    prefix nil
+  end
 
-    # secondary configuration
-    # configure RodauthAdmin, :admin
+  # secondary configuration
+  # configure RodauthAdmin, :admin
 
-    route do |r|
+  route do |r|
     r.rodauth # route rodauth requests
 
     # ==> Authenticating requests

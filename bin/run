@@ -154,7 +154,13 @@ case "$1" in
     "rspec")
         check_docker
         shift  # Remove 'rspec' from arguments
-        docker compose -f $COMPOSE_FILE run --rm rails bundle exec rspec "$@"
+        docker compose -f $COMPOSE_FILE run --rm -e RAILS_ENV=test rails bundle exec rspec "$@"
+        ;;
+
+    "swagger")
+        # Regenerate swagger/v1/swagger.json from rswag specs
+        check_docker
+        docker compose -f $COMPOSE_FILE run --rm -e RAILS_ENV=test rails bundle exec rails rswag:specs:swaggerize
         ;;
 
     "bundle")
@@ -209,6 +215,7 @@ case "$1" in
         echo "  lint [paths]        - Lint Rails code with StandardRB (defaults to entire codebase)"
         echo "  brakeman [options]  - Run security analysis"
         echo "  rspec [options]     - Run Rails tests"
+        echo "  swagger             - Regenerate swagger/v1/swagger.json from rswag specs"
         echo ""
         echo "Background Jobs:"
         echo "  sidekiq web         - Start Sidekiq Web UI"

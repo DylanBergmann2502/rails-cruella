@@ -21,7 +21,7 @@ class RedocController < ApplicationController
         </style>
       </head>
       <body>
-        <redoc spec-url="#{request.base_url}/api/docs/v1/swagger.yaml"></redoc>
+        <redoc spec-url="#{request.base_url}/api-docs/v1/swagger.json"></redoc>
         <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
       </body>
       </html>

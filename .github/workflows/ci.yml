@@ -1,98 +1,92 @@
 # .github/workflows/ci.yml
 name: CI
 
-# Enable Buildkit and let compose use it to speed up image building
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
 
 on:
   pull_request:
-    branches: ['master', 'main']
-    paths-ignore: ['docs/**']
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
   push:
-    branches: ['master', 'main']
-    paths-ignore: ['docs/**']
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
 
 concurrency:
   group: ${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  # Rails code quality checks
-  rails-code-quality:
-    name: Rails Code Quality
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-      - name: Build the Rails container
+      - name: Build Rails image
         run: docker compose -f deploy/local/web.yml build rails
 
-      - name: Format Rails code with StandardRB
+      - name: StandardRB
         run: docker compose -f deploy/local/web.yml run --rm rails bundle exec standardrb
 
-      - name: Scan for security vulnerabilities with Brakeman
+      - name: Brakeman
         run: docker compose -f deploy/local/web.yml run --rm rails bundle exec brakeman --no-pager
 
-      - name: Tear down Rails container
-        run: docker compose -f deploy/local/web.yml rm -f rails
-
-  # Rails tests
-  rails-tests:
-    name: Rails Tests
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-      - name: Build the Rails container
+      - name: Create env files
+        run: |
+          mkdir -p deploy/local/.envs
+
+          cat > deploy/local/.envs/.postgres << EOF
+          POSTGRES_HOST=postgres
+          POSTGRES_PORT=5432
+          POSTGRES_DB=rails_cruella_test
+          POSTGRES_USER=ci
+          POSTGRES_PASSWORD=ci
+          EOF
+
+          cat > deploy/local/.envs/.rails << EOF
+          RAILS_ENV=development
+          POSTGRES_HOST=postgres
+          POSTGRES_PORT=5432
+          POSTGRES_DB=rails_cruella_test
+          POSTGRES_USER=ci
+          POSTGRES_PASSWORD=ci
+          RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
+          RAILS_MAX_THREADS=5
+          RAILS_HOST=0.0.0.0
+          REDIS_URL=redis://redis:6379/0
+          EOF
+
+          cat > deploy/local/.envs/.garage << EOF
+          GARAGE_ACCESS_KEY_ID=placeholder
+          GARAGE_SECRET_ACCESS_KEY=placeholder
+          EOF
+
+      - name: Build Rails image
         run: docker compose -f deploy/local/web.yml build rails
 
-      - name: Start PostgreSQL and Redis
+      - name: Start services
         run: docker compose -f deploy/local/web.yml up -d postgres redis
 
-      - name: Wait for PostgreSQL to be ready
-        run: sleep 10
+      - name: Run migrations
+        run: docker compose -f deploy/local/web.yml run --rm -e RAILS_ENV=test rails bundle exec rails db:create db:migrate
 
-      - name: Check DB Migrations
-        run: docker compose -f deploy/local/web.yml run --rm rails bundle exec rails db:migrate:status
+      - name: Run tests
+        run: docker compose -f deploy/local/web.yml run --rm -e RAILS_ENV=test rails bundle exec rspec
 
-      - name: Run DB Migrations
-        run: docker compose -f deploy/local/web.yml run --rm rails bundle exec rails db:migrate RAILS_ENV=test
+      - name: Check swagger is up to date
+        run: |
+          docker compose -f deploy/local/web.yml run --rm -e RAILS_ENV=test rails bundle exec rails rswag:specs:swaggerize
+          git diff --exit-code swagger/v1/swagger.json || (echo "swagger.json is out of date — run ./bin/run swagger" && exit 1)
 
-      - name: Run Rails Tests
-        run: docker compose -f deploy/local/web.yml run --rm rails bundle exec rspec
-
-      - name: Tear down the Stack
+      - name: Tear down
+        if: always()
         run: docker compose -f deploy/local/web.yml down -v
-
-  # Build check
-  build:
-    name: Build Check
-    runs-on: ubuntu-latest
-    needs: [rails-code-quality, rails-tests]
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v5
-
-      - name: Build all containers
-        run: docker compose -f deploy/local/web.yml build
-
-      - name: Start all services
-        run: docker compose -f deploy/local/web.yml up -d
-
-      - name: Check if services are healthy
-        run: |
-          sleep 30
-          docker compose -f deploy/local/web.yml ps
-
-      - name: Test API health endpoint
-        run: |
-          sleep 10
-          curl -f http://localhost:8000/health
-
-      - name: Tear down containers
-        run: docker compose -f deploy/local/web.yml down
-
