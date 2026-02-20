@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 
 # Core Framework
-gem "rails", "~> 8.1.1"
+gem "rails", "~> 8.1.2"
 
 # Database & Storage
 gem "pg", "~> 1.6"
@@ -10,7 +10,7 @@ gem "redis", "~> 5.4"
 gem "aws-sdk-s3", require: false
 
 # Web Server & Performance
-gem "puma", "~> 7.1"
+gem "puma", "~> 7.2"
 gem "bootsnap", require: false
 gem "thruster", require: false
 
@@ -24,7 +24,7 @@ gem "pundit", "~> 2.5"
 gem "argon2", "~> 2.3", require: false
 gem "jwt", "~> 3.1", require: false
 gem "sequel-activerecord_connection", "~> 2.0", require: false
-gem "tilt", "~> 2.6", require: false
+gem "tilt", "~> 2.7", require: false
 
 # API & Serialization
 gem "dry-validation", "~> 1.11"
@@ -67,7 +67,7 @@ group :development, :test do
 
   # Test Data & Factories
   gem "factory_bot_rails", "~> 6.5"
-  gem "faker", "~> 3.5"
+  gem "faker", "~> 3.6"
 
   # Test Utilities
   gem "shoulda-matchers", "~> 7.0"
