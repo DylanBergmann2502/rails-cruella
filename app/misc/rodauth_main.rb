@@ -75,6 +75,11 @@ class RodauthMain < Rodauth::Rails::Auth
     allow_refresh_with_expired_jwt_access_token? true
     expired_jwt_access_token_status 401
 
+    # Include account_id in JWT payload so clients can identify the user without an API call.
+    jwt_session_hash do
+      super().merge("account_id" => account_id)
+    end
+
     # Delete the account record when the user has closed their account.
     delete_account_on_close? true
 
