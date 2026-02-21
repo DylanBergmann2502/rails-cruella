@@ -32,6 +32,7 @@ License: MIT
 |---|---|
 | Rails API | http://localhost:8000 |
 | Swagger UI | http://localhost:8000/api-docs |
+| OpenAPI JSON | http://localhost:8000/api-docs/v1/swagger.json |
 | Sidekiq Web UI | http://localhost:4567 |
 | Garage S3 API | http://localhost:3900 |
 | Garage Web UI | http://localhost:3909 |
