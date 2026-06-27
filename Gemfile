@@ -37,7 +37,7 @@ gem "ransack", "~> 4.4"
 gem "pagy", "~> 43.5"
 
 # Model Utilities
-gem "counter_culture", "~> 3.13"
+gem "counter_culture", "~> 3.14"
 gem "acts_as_paranoid", "~> 0.11"
 gem "activerecord-import", "~> 2.2"
 
