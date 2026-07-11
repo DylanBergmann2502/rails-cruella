@@ -24,7 +24,7 @@ gem "pundit", "~> 2.5"
 gem "argon2", "~> 2.3", require: false
 gem "jwt", "~> 3.2", require: false
 gem "sequel-activerecord_connection", "~> 2.0", require: false
-gem "tilt", "~> 2.7", require: false
+gem "tilt", "~> 2.8", require: false
 
 # API & Serialization
 gem "dry-validation", "~> 1.11"
@@ -34,7 +34,7 @@ gem "blueprinter", "~> 1.3"
 # Search & Filtering
 gem "pg_search", "~> 2.3"
 gem "ransack", "~> 4.4"
-gem "pagy", "~> 43.5"
+gem "pagy", "~> 43.6"
 
 # Model Utilities
 gem "counter_culture", "~> 3.14"
@@ -70,6 +70,6 @@ group :development, :test do
   gem "faker", "~> 3.8"
 
   # Test Utilities
-  gem "shoulda-matchers", "~> 7.0"
+  gem "shoulda-matchers", "~> 8.0"
   gem "webmock", "~> 3.26"
 end
