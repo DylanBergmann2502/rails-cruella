@@ -2,7 +2,7 @@
 # Standard Ruby linter and formatter configuration
 
 # Ruby version to target
-ruby_version: 3.4
+ruby_version: 4.0
 
 # Paths to ignore during linting
 ignore:
