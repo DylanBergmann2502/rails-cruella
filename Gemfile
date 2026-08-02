@@ -19,7 +19,7 @@ gem "sidekiq", "~> 8.1"
 gem "sidekiq-cron", "~> 2.4"
 
 # Authentication & Authorization
-gem "rodauth-rails", "~> 2.1"
+gem "rodauth-rails", "~> 2.2"
 gem "pundit", "~> 2.5"
 gem "argon2", "~> 2.3", require: false
 gem "jwt", "~> 3.2", require: false
