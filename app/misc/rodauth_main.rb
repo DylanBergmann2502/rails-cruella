@@ -77,7 +77,8 @@ class RodauthMain < Rodauth::Rails::Auth
 
     # Include account_id in JWT payload so clients can identify the user without an API call.
     jwt_session_hash do
-      super().merge("account_id" => account_id)
+      session_hash = super()
+      account ? session_hash.merge("account_id" => account_id) : session_hash
     end
 
     # Delete the account record when the user has closed their account.
