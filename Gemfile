@@ -6,7 +6,7 @@ gem "rails", "~> 8.1.3"
 
 # Database & Storage
 gem "pg", "~> 1.6"
-gem "redis", "~> 5.4"
+gem "redis", "~> 6.0"
 gem "aws-sdk-s3", require: false
 
 # Web Server & Performance
@@ -24,7 +24,7 @@ gem "pundit", "~> 2.5"
 gem "argon2", "~> 2.3", require: false
 gem "jwt", "~> 3.2", require: false
 gem "sequel-activerecord_connection", "~> 2.0", require: false
-gem "tilt", "~> 2.8", require: false
+gem "tilt", "~> 2.9", require: false
 
 # API & Serialization
 gem "dry-validation", "~> 1.11"
@@ -39,7 +39,7 @@ gem "pagy", "~> 43.6"
 # Model Utilities
 gem "counter_culture", "~> 3.14"
 gem "acts_as_paranoid", "~> 0.11"
-gem "activerecord-import", "~> 2.2"
+gem "activerecord-import", "~> 2.3"
 
 # API Documentation
 gem "rswag", "~> 2.17"
