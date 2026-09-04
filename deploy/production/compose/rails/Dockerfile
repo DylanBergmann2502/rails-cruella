@@ -48,9 +48,14 @@ RUN chmod +x bin/* && \
 # Final stage for app image
 FROM base
 
+# Create the runtime user before copying application files so ownership is
+# assigned in the copy layer instead of requiring a recursive chown layer.
+RUN groupadd --system --gid 1000 rails && \
+    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
-COPY --from=build /rails /rails
+COPY --from=build --chown=rails:rails /rails /rails
 
 # Copy production scripts directly to final stage
 COPY ./deploy/production/compose/rails/entrypoint /entrypoint
@@ -61,10 +66,7 @@ COPY ./deploy/production/compose/rails/sidekiq/web/start /start-sidekiq-web
 RUN sed -i 's/\r$//g' /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web && \
     chmod +x /entrypoint /start /migrate /start-sidekiq-worker /start-sidekiq-web
 
-# Run and own only the runtime files as a non-root user for security
-RUN groupadd --system --gid 1000 rails && \
-    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+# Run as a non-root user for security
 USER 1000:1000
 
 # Entrypoint prepares the database.
