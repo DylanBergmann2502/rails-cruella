@@ -22,7 +22,7 @@ gem "sidekiq-cron", "~> 2.4"
 gem "rodauth-rails", "~> 2.2"
 gem "pundit", "~> 2.5"
 gem "argon2", "~> 2.3", require: false
-gem "jwt", "~> 3.2", require: false
+gem "jwt", "~> 3.3", require: false
 gem "sequel-activerecord_connection", "~> 2.0", require: false
 gem "tilt", "~> 2.9", require: false
 
@@ -32,7 +32,7 @@ gem "rack-cors"
 gem "blueprinter", "~> 1.3"
 
 # Search & Filtering
-gem "pg_search", "~> 2.3"
+gem "pg_search", "~> 2.4"
 gem "ransack", "~> 4.4"
 gem "pagy", "~> 43.6"
 
