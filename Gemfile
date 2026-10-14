@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1"
 
 # Database & Storage
-gem "pg", "~> 1.6"
+gem "pg", "~> 1.7"
 gem "redis", "~> 6.0"
 gem "aws-sdk-s3", require: false
 
@@ -34,7 +34,7 @@ gem "blueprinter", "~> 1.3"
 # Search & Filtering
 gem "pg_search", "~> 2.4"
 gem "ransack", "~> 4.4"
-gem "pagy", "~> 43.6"
+gem "pagy", "~> 43.7"
 
 # Model Utilities
 gem "counter_culture", "~> 3.14"
