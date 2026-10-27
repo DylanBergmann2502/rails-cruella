@@ -34,7 +34,7 @@ gem "blueprinter", "~> 1.3"
 # Search & Filtering
 gem "pg_search", "~> 2.4"
 gem "ransack", "~> 4.4"
-gem "pagy", "~> 43.7"
+gem "pagy", "~> 43.8"
 
 # Model Utilities
 gem "counter_culture", "~> 3.14"
@@ -71,5 +71,5 @@ group :development, :test do
 
   # Test Utilities
   gem "shoulda-matchers", "~> 8.0"
-  gem "webmock", "~> 3.26"
+  gem "webmock", "~> 3.34"
 end
