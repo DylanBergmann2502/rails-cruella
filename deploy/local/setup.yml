@@ -34,6 +34,8 @@ services:
       - ../../deploy/local/compose/garage/garage.toml:/etc/garage.toml:ro
       - garage_meta:/var/lib/garage/meta
       - garage_data:/var/lib/garage/data
+    # Bootstrap readiness only: the init job below must apply the first layout
+    # before `garage health` can report the cluster as healthy.
     healthcheck:
       test: ["CMD", "/garage", "status"]
       interval: 5s
