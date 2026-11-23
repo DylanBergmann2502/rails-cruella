@@ -1,7 +1,7 @@
 # config/initializers/pagy.rb
 
 # Set the default pagination limit
-Pagy.options[:limit] = 25
+Pagy::OPTIONS[:limit] = 25
 
 # Set up overflow handling
-Pagy.options[:overflow] = :last_page
+Pagy::OPTIONS[:overflow] = :last_page
